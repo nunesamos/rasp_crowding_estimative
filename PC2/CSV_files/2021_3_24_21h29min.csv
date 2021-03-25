@@ -1,0 +1,5 @@
+,MTCNN,haarcascade_lefteye_2splits,haarcascade_mcs_mouth,haarcascade_frontalface_alt2,haarcascade_eye,haarcascade_lowerbody,haarcascade_righteye_2splits,haarcascade_profileface,haarcascade_eye_tree_eyeglasses,haarcascade_frontalface_alt_tree,haarcascade_fullbody,haarcascade_upperbody,haarcascade_frontalcatface_extended,TOTAL
+0,28,10,208,28,32,10,18,9,4,6,4,11,6,374.0
+1,65,0,3,0,3,0,0,0,0,0,0,2,0,73.0
+2,7,0,6,0,0,0,0,1,0,0,0,4,0,18.0
+3,5,1,27,1,7,0,1,0,1,0,0,3,0,46.0
