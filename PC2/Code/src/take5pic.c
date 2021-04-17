@@ -24,8 +24,9 @@ bool takeLoopPic(){
 
     for(int i=0; i<Npic; i++){
         time (&rawtime);
-        sprintf(path,"./pics/Figura_%s.jpg",ctime(&rawtime));
+        sprintf(path,"./pics/Figura_%s",ctime(&rawtime));
         rmspace(path);
+        strcat(path, ".jpg");
         strcpy(arg, "raspistill -o ");
         strcat(arg, path);
         printf("%s\n", arg);
