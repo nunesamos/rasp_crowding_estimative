@@ -9,6 +9,8 @@ void rmspace(char *p){
     for (; *p; ++p){
         if (*p == ' ')
             *p = '_';
+        if (*p == '\n')
+            *p = '\0';
     }
 }
 
