@@ -16,6 +16,7 @@ void rmspace(char *p){
 bool takeLoopPic(){
     int Npic = 5;
     char Num[10] = "0";
+    char path[50];
     char arg[50];
     printf("Tudo bem até aqui\n");
 
@@ -23,8 +24,10 @@ bool takeLoopPic(){
 
     for(int i=0; i<Npic; i++){
         time (&rawtime);
-        sprintf(arg,"raspistill -o ./pics/Figura_%s.jpg",ctime(&rawtime) );
-        rmspace(arg);
+        sprintf(path,"./pics/Figura_%s.jpg",ctime(&rawtime));
+        rmspace(path);
+        strcpy(arg, "raspistill -o ");
+        strcat(arg, path);
         printf("%s\n", arg);
         system(arg);
     }
