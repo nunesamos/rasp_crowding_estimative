@@ -2,7 +2,15 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 #include "../include/take5pic.h"
+
+void rmspace(char *p){
+    for (; *p; ++p){
+        if (*p == ' ')
+            *p = '_';
+    }
+}
 
 
 bool takeLoopPic(){
@@ -11,11 +19,12 @@ bool takeLoopPic(){
     char arg[50];
     printf("Tudo bem até aqui\n");
 
+    time_t rawtime;
+
     for(int i=0; i<Npic; i++){
-        strcpy(arg, "raspistill -o ./pics/Figura");
-        sprintf(Num, "%d", i);
-        strcat(arg,Num);
-        strcat(arg,".jpg");
+        time (&rawtime);
+        sprintf(arg,"raspistill -o ./pics/Figura_%s.jpg",ctime(&rawtime) );
+        rmspace(arg);
         printf("%s\n", arg);
         system(arg);
     }
