@@ -5,4 +5,4 @@ main.o: ./src/main.c ./include/take5pic.h
 take5pic.o: ./src/take5pic.c ./include/take5pic.h
 	gcc $(CFLAGS) -c ./src/take5pic.c
 clean:
-	rm -f *.o rce
+	rm -f *.o rce ./pics/*
