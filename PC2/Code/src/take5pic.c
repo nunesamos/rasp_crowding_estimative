@@ -17,7 +17,7 @@ void rmspace(char *p){
 
 
 bool takeLoopPic(){
-    int Npic = 30;
+    int Npic = 360;
     char Num[10] = "0";
     char path[50];
     char arg[50];
