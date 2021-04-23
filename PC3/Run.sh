@@ -7,6 +7,8 @@ cmake ..
 cmake --build .
 
 ./sample/crwd_fd ../data/models ../data/2007_007763.jpg
-./sample/crwd_fd ../data/models ../mercado_1.jpeg
+./sample/crwd_fd ../data/models ../mercado1.jpg
+./sample/crwd_fd ../data/models ../mercado2.jpg
+./sample/crwd_fd ../data/models ../mercado3.jpg
 
 clear
