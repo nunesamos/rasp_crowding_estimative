@@ -19,7 +19,7 @@ include_directories (
 
 include_directories( ${OpenCV_INCLUDE_DIRS} )
 #set sources
-file (GLOB SAMPLE_SOURCE_FILES "${SAMPLE_SRC_PATH}/*.cc")
+file (GLOB SAMPLE_SOURCE_FILES "${SAMPLE_SRC_PATH}/*.cpp")
 file (GLOB SAMPLE_HEADER_FILES "${SAMPLE_INCLUDE_PATH}/*.h")
 
 #set target executable
