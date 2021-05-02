@@ -83,11 +83,11 @@ static cv::Mat drawRectsAndPoints(const cv::Mat &img,
   img.convertTo(outImg, CV_8UC3);
 
   for (auto &d : data) {
-    cv::rectangle(outImg, d.first, cv::Scalar(0, 0, 255));
+    cv::rectangle(outImg, d.first, cv::Scalar(0, 0, 255), 2);
     auto pts = d.second;
-    for (size_t i = 0; i < pts.size(); ++i) {
-      cv::circle(outImg, pts[i], 3, cv::Scalar(0, 0, 255));
-    }
+    //for (size_t i = 0; i < pts.size(); ++i) {
+     // cv::circle(outImg, pts[i], 3, cv::Scalar(0, 0, 255));
+   // }
   }
   return outImg;
 }
@@ -158,7 +158,7 @@ double get_avg_csv_files(string dir_path, int hour){
                 clck=0;
 
                 sprintf(path_file, "%s%s", dir_path.c_str(), csv_file->d_name);
-                cout << path_file;
+                //cout << path_file;
                 vector<vector<double>> data = parse2DCsvFile(path_file);
 
                 for (auto l : data) {
@@ -175,7 +175,7 @@ double get_avg_csv_files(string dir_path, int hour){
                         
                         col++;
                     }
-                    cout << cum << endl;
+                    //cout << cum << endl;
                     Total += cum;
                     cum = 0;
                     clck = 0;
@@ -183,7 +183,7 @@ double get_avg_csv_files(string dir_path, int hour){
                  }
 
                 c += count;
-                cout << "-------------" << endl;
+                //cout << "-------------" << endl;
             
             }
             
@@ -193,7 +193,7 @@ double get_avg_csv_files(string dir_path, int hour){
             return -1;
         }
 
-    cout << Total << endl << c << endl;
+    //cout << Total << endl << c << endl;
     media = (double) Total*1.0/c;
 
     return media;
@@ -219,7 +219,7 @@ int main(int argc, char **argv) {
     sprintf(csv_filename, "../CSV_files/Dados_%d_%d_%d.csv", tm_ref->tm_year + 1900, tm_ref->tm_mon + 1, tm_ref->tm_min+150);
 
 	int N_det = 0, c;
-    auto dc = opendir("../detectors2/");
+    auto dc = opendir("../detector_architectures/");
     while (auto d = readdir(dc)) N_det++;
     
 	cout << "Numero de Detectores: " << N_det << endl;
@@ -232,7 +232,7 @@ int main(int argc, char **argv) {
         // csv_file << tm_ref->tm_hour << "," << tm_ref->tm_min << "," << tm_ref->tm_sec << endl;
 
 		c=1;
-        if (auto dc2 = opendir("../detectors2/")) {
+        if (auto dc2 = opendir("../detector_architectures/")) {
             
             while (auto dd = readdir(dc2)) {
 
@@ -241,7 +241,7 @@ int main(int argc, char **argv) {
                 csv_file <<dd->d_name;
                 if (c<(N_det-1))  csv_file << ",";
 
-				cout << "D: " << dd->d_name << endl;
+		cout << "D: " << dd->d_name << endl;
                 c++;
 
             }
@@ -305,7 +305,7 @@ int main(int argc, char **argv) {
 	csv_file << det.size() << ",";
 
     double media = get_avg_csv_files("../CSV_files/", 7);
-    cout << "\nMedia: " << media << endl;
+    cout << "\nMedia: " << media << endl << "\n--------------------------------\n";
 	
 
 	char cascade_name[400];
@@ -334,7 +334,7 @@ int main(int argc, char **argv) {
 			for ( size_t i = 0; i < detect.size(); i++ ){
 				cv::Point pt1(detect[i].x, detect[i].y);
 				cv::Point pt2(detect[i].x + detect[i].width, detect[i].y + detect[i].height);
-				cv::rectangle(result_image2, pt1, pt2, cv::Scalar(0, 255, 0));
+				cv::rectangle(result_image2, pt1, pt2, cv::Scalar(0, 255, 0), 1);
 			}
             total_detect += detect.size();
 			csv_file << detect.size();
@@ -351,7 +351,8 @@ int main(int argc, char **argv) {
 	}
 
     if (total_detect >= 0.1*media) {
-        cout << "\n---Detectada possivel aglomeração---\n";
+        cout << "\n\n---Detectada possivel aglomeração---\n\n";
+        cout << "Enviando email \n\n";
         char comando_email[512];
         sprintf(comando_email, "../send_image.sh %s", argv[2]);
         system(comando_email);
@@ -360,6 +361,8 @@ int main(int argc, char **argv) {
 	csv_file.close();
 	cv::imshow("Resultado", result_image2);
 	cv::waitKey(0);
+	 cv::imwrite("imagem.jpeg", result_image2);
+	cout << "-------------------------------------------------" ;
 
 
 	return 0;
