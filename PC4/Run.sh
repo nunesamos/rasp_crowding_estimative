@@ -12,3 +12,7 @@ cmake --build .
 
 
 clear
+<<<<<<< HEAD
+=======
+
+>>>>>>> 07fbd9d7cfc9bb16c976d2e78c1f25dcb22ae50d
