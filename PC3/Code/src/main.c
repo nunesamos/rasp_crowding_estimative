@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "../include/take5pic.h"
+#include "../include/takepic.h"
 
 int main(void){
+    char dir[50] = "./pics";
     
-    takeLoopPic();
-    printf("Tudo rodando \n");
+    char *path = takeshoot(dir);
+
+
+    printf("Tudo rodando: %s \n", path);
 
     return 0;
 }
